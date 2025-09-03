@@ -13,11 +13,11 @@ def main : IO Unit :=do
   let x := 1 |> add_once
   IO.println s!"add_once = {x}"
 
-  let x := 1 |> add 2
-  IO.println s!"add 2 = {x}"
+  let x := 1 |> add 2 |> add 5
+  IO.println s!"add 1 2, 5 = {x}"
 
   let x := 1 |> (add . 3)
-  IO.println s!"add 3 = {x}"
+  IO.println s!"add 1 3 = {x}"
 
   let x := (some 5).map add <*> some 10
   IO.println s!"x = {x}"
