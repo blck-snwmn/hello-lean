@@ -3,6 +3,12 @@ import HelloLean
 def add(x y : Nat) : Nat := x + y
 def add_once := add 1
 
+def add_opt(x y : Option Nat) : Option Nat := do
+  -- let x' ← x
+  -- let y' ← y
+  -- pure (x' + y')
+  pure ((<- x)+ (<- y))
+
 def main : IO Unit :=do
   IO.println s!"Hello, {hello}!"
   IO.println s!"My name is {sample.name}."
@@ -35,4 +41,7 @@ def main : IO Unit :=do
   IO.println s!"x = {x}"
 
   let x := pure add <*> some 6 <*> some 11
+  IO.println s!"x = {x}"
+
+  let x :=  add_opt (some 5) (some 19)
   IO.println s!"x = {x}"
