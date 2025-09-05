@@ -9,6 +9,17 @@ def add_opt(x y : Option Nat) : Option Nat := do
   -- pure (x' + y')
   pure ((<- x)+ (<- y))
 
+class ToStr (α : Type) where
+  toStr : α → String
+
+instance : ToStr Bool where
+  toStr | true => "true" | false => "false"
+
+def showIt {α} [ToStr α] (x : α) : String := ToStr.toStr x
+
+#eval showIt true
+#eval showIt false
+
 def main : IO Unit :=do
   IO.println s!"Hello, {hello}!"
   IO.println s!"My name is {sample.name}."
