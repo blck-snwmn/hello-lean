@@ -1,9 +1,9 @@
 import HelloLean
 
 def add(x y : Nat) : Nat := x + y
-def add_once := add 1
+def addOnce := add 1
 
-def add_opt(x y : Option Nat) : Option Nat := do
+def addOpt(x y : Option Nat) : Option Nat := do
   -- let x' ← x
   -- let y' ← y
   -- pure (x' + y')
@@ -27,7 +27,7 @@ def main : IO Unit :=do
   IO.println s!"My name is {open short in sig}: {open short in name}."
   IO.println s!"nest.sampleA.param = {nest.sampleA.param}"
 
-  let x := 1 |> add_once
+  let x := 1 |> addOnce
   IO.println s!"add_once = {x}"
 
   let x := 1 |> add 2 |> add 5
@@ -45,14 +45,14 @@ def main : IO Unit :=do
   let x := some 5 |> Option.map add |> (. <*> some 10)
   IO.println s!"x = {x}"
 
-  let x := (some 5).map add_once
+  let x := (some 5).map addOnce
   IO.println s!"x = {x}"
 
-  let x := some 5 |> Option.map add_once
+  let x := some 5 |> Option.map addOnce
   IO.println s!"x = {x}"
 
   let x := pure add <*> some 6 <*> some 11
   IO.println s!"x = {x}"
 
-  let x :=  add_opt (some 5) (some 19)
+  let x :=  addOpt (some 5) (some 19)
   IO.println s!"x = {x}"

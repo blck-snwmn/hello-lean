@@ -17,12 +17,12 @@ def fibTR (n : Nat) : Nat :=
 
 #eval fibTR 10
 
-def print_loop(n: Nat) : IO Unit :=
+def printLoop(n: Nat) : IO Unit :=
   for i in [0:n] do
     IO.println s!"{i}: {fib i} {fibTR i}"
 
 def main : IO Unit :=do
-  print_loop 20
+  printLoop 20
 
 /-!
 `fib` と末尾再帰版 `fibTR` が点ごとに一致することを示す。
@@ -35,7 +35,7 @@ def main : IO Unit :=do
 `loop n 0 1 = fib n`、すなわち `fibTR n = fib n` が従う。
 -/
 
-theorem fibTR_eq_fib : ∀ n, fibTR n = fib n := by
+theorem fib_tr_eq_fib : ∀ n, fibTR n = fib n := by
   -- 一般化した不変量を先に証明する
   have loop_eq_fib : ∀ n, ∀ k, fibLoop n (fib k) (fib (k+1)) = fib (n + k) := by
     intro n
